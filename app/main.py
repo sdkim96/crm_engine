@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.engines import chatbot, eval_smartwork
 from app.engines import BasicChatbotState, EvalSmartWorkState
 
-
 from langserve import add_routes
 
 app = FastAPI(
