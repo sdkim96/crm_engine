@@ -47,8 +47,6 @@ class EvalSmartWorkState(BaseModel):
     mbti: MBTI
 
     human_analysis: Optional[str] = None
-
-
     response: Optional[str] = None
 
 
