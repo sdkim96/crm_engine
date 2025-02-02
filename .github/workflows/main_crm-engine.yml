@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_25ef54c2bd9b482a8bc457dd00817a13 }}/crm_engine:${{ github.sha }}
+        tags: index.docker.io/sdkim96/crm_engine:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'crm-engine'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a46efc2cc2eb49c192d1aec2f2f1e27b }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_25ef54c2bd9b482a8bc457dd00817a13 }}/crm_engine:${{ github.sha }}'
+        images: 'index.docker.io/sdkim96/crm_engine:${{ github.sha }}'
