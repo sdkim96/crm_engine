@@ -1,18 +1,16 @@
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import tools_condition
 
-from app.engines import nodes
-from app.engines.models import State
+from app.engines.chatbot import nodes
+from app.engines.chatbot.state import BasicChatbotState
 
-from app.engines.nodes import tool_node
-
-class Graph(StateGraph):
+class ChatBot(StateGraph):
 
     def __init__(self):
 
-        self._builder: StateGraph = StateGraph(State)
+        self._builder: StateGraph = StateGraph(BasicChatbotState)
         self._builder.add_node("chatbot", nodes.chatbot)
-        self._builder.add_node("tools", tool_node)
+        self._builder.add_node("tools", nodes.web_searcher)
 
 
         self._builder.add_edge(START, "chatbot")
@@ -24,4 +22,4 @@ class Graph(StateGraph):
         self._builder.add_edge("tools", "chatbot")
         self.graph = self._builder.compile()
 
-graph = Graph().graph
+chatbot = ChatBot().graph
