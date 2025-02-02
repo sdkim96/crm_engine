@@ -20,7 +20,9 @@ class BookmarkBase(BaseModel):
 class Bookmark(BookmarkBase):
     url: Optional[str] = None
     children: Optional[List["Bookmark"]] = None 
-    
+
+class Bookmarks(BaseModel):
+    bookmarks: List[Bookmark]
 
 class MBTI(enum.Enum):
     INTJ = "INTJ"
@@ -42,9 +44,11 @@ class MBTI(enum.Enum):
 
 class EvalSmartWorkState(BaseModel):
     
+    input_bookmarks: str
     profession: Profession
-    bookmarks: List[Bookmark]
     mbti: MBTI
+
+    bookmarks: Optional[Bookmarks] = None
 
     human_analysis: Optional[str] = None
     response: Optional[str] = None

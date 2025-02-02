@@ -8,42 +8,25 @@ smartwork = RemoteRunnable("http://localhost:8000/smartwork/")
 
 BASE_URL="http://localhost:8000/smartwork/stream"
 
+bookmarks = """
+Bookmarks
+
+북마크바
+
+BP1
+마이페이지
+Twitch Insights - Follow List
+[OOP] 객체지향 5원칙(SOLID) - 개방-폐쇄 원칙 (Open-Closed Principle) - 𝝅번째 알파카의 개발 낙서장
+Nas - Synology DiskStation
+rickiepark/aiml4coders: <개발자를 위한 머신러닝&딥러닝> 도서의 코드 저장소
+aiml4coders/03-beyond-the-basics.ipynb at main · rickiepark/aiml4coders
+Best Acoustic Japanese Song 🎸 Relaxing Japanese Acoustic Music - YouTube
+롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹
+"""
 
 mock = EvalSmartWorkState(
     profession=Profession.DESIGNER,
-    bookmarks=[
-        Bookmark(
-            id=0,
-            name="Python",
-            type=BookmarkType.URL,
-            url="https://www.python.org/"
-        ),
-        Bookmark(
-            id=1,
-            name="Django",
-            type=BookmarkType.URL,
-            url="https://www.djangoproject.com/"
-        ),
-        Bookmark(
-            id=2,
-            name="생성형 ai",
-            type=BookmarkType.FOLDER,
-            children=[
-                Bookmark(
-                    id=3,
-                    name="GPT-3",
-                    type=BookmarkType.URL,
-                    url="https://www.openai.com/gpt-3/"
-                ),
-                Bookmark(
-                    id=4,
-                    name="GPT-4",
-                    type=BookmarkType.URL,
-                    url="https://www.openai.com/gpt-4/"
-                ),
-            ]
-        )
-    ],
+    input_bookmarks=bookmarks,
     mbti=MBTI.ISTP,
 )
 

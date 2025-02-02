@@ -1,8 +1,33 @@
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.output_parsers import PydanticOutputParser, StrOutputParser
 
 from app.engines.base import openai
-from app.engines.eval_smartwork.models import EvalSmartWorkState
+from app.engines.eval_smartwork.models import EvalSmartWorkState, Bookmarks
+
+def analyze_bookmarks(state: EvalSmartWorkState):
+
+    raw = """
+    당신은 북마크 분석가입니다.\
+    다음 유저의 메세지를 보고 북마크 정보를 분석해주세요.
+
+    format_instructions: {format_instructions}
+    북마크 정보: {bookmarks}
+    """
+    parser = PydanticOutputParser(pydantic_object=Bookmarks)
+    prompt = PromptTemplate.from_template(raw)
+    chain = prompt | openai | parser
+
+    response = chain.invoke({
+        "bookmarks": state.input_bookmarks,
+        "format_instructions": parser.get_format_instructions()
+    })
+
+    state.bookmarks = response
+    
+    print("parser analysis 끝")
+    return state
+
+    return state
 
 def analyze_human(state: EvalSmartWorkState):
 
